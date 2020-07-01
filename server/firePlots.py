@@ -12,9 +12,8 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 from matplotlib.ticker import MaxNLocator
 import matplotlib.ticker as ticker
-
 from pathlib import Path
-sys.argv[1]
+
 data_folder = Path(sys.argv[1])
 
 print("running python script firePlots", data_folder)
