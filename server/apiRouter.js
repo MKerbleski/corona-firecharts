@@ -1,15 +1,10 @@
-const  fs  = require('fs');
-
 require('dotenv').config();
 const 
     express = require('express'),
     router = express.Router(),
     spawn = require("child_process").spawn,
-    exec = require("child_process").exec,
-    path = require("path")
-    
-console.log("dirname", __dirname)
-console.log("process.cwd()", process.cwd())
+    path = require("path"),
+    fs  = require('fs')
 
 router.get('/refresh', (req, res) => {
     console.log("refresh")
