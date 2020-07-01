@@ -4,9 +4,16 @@ require('dotenv').config();
 const 
     express = require('express'),
     router = express.Router(),
-    spawn = require("child_process").spawn
+    spawn = require("child_process").spawn,
+    exec = require("child_process").exec,
+    path = require("path")
 
-let runScript = spawn('python', ['./firePlots.py']); 
+
+let runScript = exec('jupyter nbconvert --ExecutePreprocessor.timeout=None --to notebook --execute ./server/firePlots.ipynb', (err, stdout, stderr) => {
+    console.log(err)
+    console.log(stdout)
+    console.log(stderr)
+})
 
 router.get('/refresh', (req, res) => {
     console.log("refresh")
@@ -25,15 +32,14 @@ router.get('/refresh', (req, res) => {
 
 router.get('/list', (req, res) => {
     console.log("list")
-    let files = fs.readdirSync('./figures/fire', (err, files) => {
+    let files = fs.readdirSync(path.join(__dirname, 'figures/fire'), (err) => {
         console.log("err", err)
-        // console.log("files", files)
         if(err){
             res.status(500).json({ err })
         }
     })
     console.log("files", files)
-    res.send('hey')
+    res.send(files)
 })
 
 module.exports = router

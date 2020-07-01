@@ -40,13 +40,13 @@ const
 //   console.log('The answer to life, the universe, and everything!');
 // });
 
-var dir = path.join(__dirname, '/public');
+var dir = path.join(__dirname, 'client/build');
 var firePlots = path.join(__dirname, 'server/figures/fire');
 
-// console.log("dir", dir)
+console.log("dir", dir)
 
-server.use(express.static(dir));
-server.use(express.static(firePlots));
+server.use(express.static(dir))
+server.use(express.static(firePlots))
 
 // server.use(express.json());
 
@@ -57,9 +57,9 @@ server.use('/api', (req, res, next) => {
     next()
 }, apiRouter);
 
-// server.get('*', (req, res) => {
-// 	res.sendFile(path.join(__dirname + '/client/build/index.html'));
-// });
+server.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 server.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);
