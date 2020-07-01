@@ -4,53 +4,17 @@ const
     path = require('path'),
     server = express(),
     port = process.env.PORT || 8080,
-    schedule = require('node-schedule'),
-    cp = require("child_process")
-
+    schedule = require('node-schedule')
  
 // schedule.scheduleJob('* * 3 * *', function(){
-	// runs at 3 am daily
-      
-    // Parameters passed in spawn - 
-    // 1. type_of_script 
-    // 2. list containing Path of the script 
-    //    and arguments for the script  
-      
-    // E.g : http://localhost:3000/name?firstname=Mike&lastname=Will 
-    // so, first name = Mike and last name = Will 
-   
-	//  let runScript = cp.exec('python 2+2'); 
-    //  let runScript = cp.exec('jupyter nbconvert --version')
-//   runScript()
-    // Takes stdout data from script which executed 
-    // with arguments and send this data to res object 
-    
-    
-    
-    
-    // runScript.stdout.on('data', function(data) { 
-
-	// 	console.log("data", data.toString())
-    //     // res.send(data.toString()); 
-    // } ) 
-
-
-
-
 //   console.log('The answer to life, the universe, and everything!');
 // });
 
-var dir = path.join(__dirname, 'client/build');
-var firePlots = path.join(__dirname, 'server/figures/fire');
-
-console.log("dir", dir)
+var dir = path.join(process.cwd(), 'client/build');
+var firePlots = path.join(process.cwd(), 'public/images');
 
 server.use(express.static(dir))
 server.use(express.static(firePlots))
-
-// server.use(express.json());
-
-// server.use(express.static(path.join(__dirname, 'client/build')));
 
 server.use('/api', (req, res, next) => {
     console.log("api")
