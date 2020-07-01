@@ -30,7 +30,7 @@ class App extends Component {
 		axios.get('/api/list').then(res => {
 			console.log('res', res)
 			this.setState({
-				files: res.data.files
+				list: res.data
 			})
 		}).catch(err => {
 			console.log('err', err)
@@ -46,7 +46,7 @@ class App extends Component {
 				<button onClick={() => this.refresh("refresh")}>refresh</button>
 				{this.state.list ? this.state.list.map(file => {
 					return (
-						<a href={file}>file</a>
+						<a href={file} key={file}>{file}</a>
 						)
 					}) : null}
 			</AppDiv>
